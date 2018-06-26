@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const authorRouter = require('./authors/author.router');
+const { authorRouter } = require('./authors');
 
 const app = express();
 const server = http.createServer(app);
