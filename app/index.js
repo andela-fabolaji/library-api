@@ -16,31 +16,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
+// index route
 router.get('/', (req, res) => {
-  console.log(';;;;;;;');
   res.status(200).send({
-    message: 'Welcome to the library'
+    message: 'Library api 1.0'
   })
 });
 
 // authors
 app.use('/authors', authorRouter(express.Router()));
-// router.route('/authors')
-//   .get((req, res, next) => {
-//     db.any('SELECT * FROM authors')
-//     .then((data) => {
-//       res.status(200)
-//       .json({ data });
-//     })
-//     .catch(err => {
-//       return next(err);
-//     });
-// });
 
-// books
-router.route('/books')
-  .get();
-
+// Other routes not provisioned in the app
 router.all('*', (req, res) => {
   res.status(404).send({
     message: 'Invalid route'
