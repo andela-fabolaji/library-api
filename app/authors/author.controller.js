@@ -1,32 +1,22 @@
-const db = require('../db');
+const client = require('../db/pgClient');
 
+// using pure pg pool
 const getAuthors = (req, res, next) => {
-  db.any('SELECT * FROM authors')
-      .then((data) => {
-      res.status(200)
-      .json({ data });
-  })
-  .catch(err => {
-      return next(err);
+  client.query('SELECT * FROM authors', (err, data) => {
+    if (err) return next(err);
+    res.status(200).json({ data: data.rows });
   });
 };
 
-const create = (req, res, next) => {
-  db.none(
-    'insert into authors(name, gender)' +
-    'values(${name}, ${gender})',
-    req.body
-  )
-    .then(() => {
-      res.status(200)
-      .json({ message: 'new author successfully added' });
-    })
-    .catch(err => {
-      return next(err);
-    });
+const createAuthor = (req, res, next) => {
+  const query = 'INSERT INTO authors(name, gender) VALUES($1, $2) RETURNING *';
+  const values = [req.body.name, parseInt(req.body.gender, 10)];
+
+  client.query(query, values, (err, data) => {
+    if (err) return next(err);
+    res.status(201)
+      .json({ data: data.rows[0] });
+  });
 };
 
-module.exports = {
-  getAll: getAuthors,
-  create
-};
+module.exports = { getAuthors, createAuthor };
