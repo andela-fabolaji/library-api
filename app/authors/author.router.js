@@ -1,9 +1,9 @@
-const authorCtrl = require('./author.controller');
+const { getAuthors, createAuthor } = require('./author.controller');
 
 const authorRouter = (router) => {
   router.route('/')
-    .get(authorCtrl.getAuthors)
-    .post(authorCtrl.createAuthor);
+    .get(getAuthors)
+    .post(createAuthor);
 
   return router;
 };
