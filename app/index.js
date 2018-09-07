@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const { authorRouter } = require('./authors');
+import User from './user';
 
 const app = express();
 const server = http.createServer(app);
@@ -20,11 +20,11 @@ app.use(morgan('dev'));
 router.get('/', (req, res) => {
   res.status(200).send({
     message: 'Library api 1.0'
-  })
+  });
 });
 
 // authors
-app.use('/authors', authorRouter(express.Router()));
+app.use('/users', User.router(express.Router()));
 
 // Other routes not provisioned in the app
 router.all('*', (req, res) => {
