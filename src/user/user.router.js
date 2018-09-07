@@ -1,4 +1,4 @@
-const User = require('./user.controller');
+import User from './user.controller';
 
 const userRouter = (router) => {
   router.route('/')

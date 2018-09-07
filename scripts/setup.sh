@@ -1,11 +1,13 @@
 #!/bin/bash
 set -e
 
+NODE_ENV=development
+
 # create db
 setupDb() {
   echo "Setting up db..."
   
-  psql
+  psql -c ~/learning/replublisher/src/config/replublisher.sql
 }
 
 # install dependencies
@@ -16,6 +18,6 @@ installDeps() {
   return 1
 }
 
-installDeps && setupDb
+setupDb
 echo "Done!!!"
 exit
