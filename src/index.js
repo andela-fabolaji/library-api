@@ -1,9 +1,8 @@
-const http = require('http');
-const express = require('express');
-const morgan = require('morgan');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-
+import http from 'http';
+import express from 'express';
+import morgan from 'morgan';
+import cors from 'cors';
+import bodyParser from 'body-parser';
 import User from './user';
 
 const app = express();
@@ -30,7 +29,7 @@ app.use('/users', User.router(express.Router()));
 router.all('*', (req, res) => {
   res.status(404).send({
     message: 'Invalid route'
-  })
+  });
 });
 
 app.use(router);
@@ -39,4 +38,4 @@ server.listen(port, (err) => {
   if (!err) return console.log(`App started on http://localhost:${port}`);
 });
 
-module.exports = app;
+export default app;
