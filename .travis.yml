@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - node
+sudo: enabled
+branches:
+  only:
+    - develop
+cache:
+  directories:
+    - "node_modules"
+before_script:
+  - npm i
+script: npm test
+after_success:
+  - npm i
+  - npm run build

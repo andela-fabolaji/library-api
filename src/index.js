@@ -18,7 +18,7 @@ app.use(morgan('dev'));
 // index route
 router.get('/', (req, res) => {
   res.status(200).send({
-    message: 'Library api 1.0'
+    message: 'Republisher'
   });
 });
 
