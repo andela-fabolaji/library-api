@@ -2,12 +2,24 @@
   "name": "republisher",
   "version": "1.0.0",
   "description": "",
+  "nyc": {
+    "all": true,
+    "include": [
+      "src/**/*.js"
+    ],
+    "exclude": [
+      "test/"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ]
+  },
   "main": "index.js",
   "scripts": {
-    "test": "npm run _test",
-    "_test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=html mocha --require babel-polyfill --require babel-register test",
-    "_coverage": "nyc report --reporter=text-lcov | coveralls",
-    "start": "./start.sh",
+    "test": "NODE_ENV=test nyc mocha --require @babel/polyfill --require @babel/register test/**/*.spec.js",
+    "coverage": "cat ./coverage/lcov.info | coveralls",
+    "start": "nodemon --exec babel-node -- src/index.js",
     "build": "cross-env NODE_ENV=production ./scripts/clean.sh && babel src --out-dir dist"
   },
   "keywords": [],
@@ -19,19 +31,22 @@
     "body-parser": "^1.18.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
     "nodemailer": "^4.6.8",
     "pg": "^7.4.3",
-    "pg-promise": "^8.4.4"
+    "pg-promise": "^8.4.4",
+    "sequelize": "^4.38.0",
+    "sequelize-cli": "^4.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-transform-spread": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "babel-plugin-istanbul": "^5.0.1",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "cors": "^2.8.4",
     "coveralls": "^3.0.2",

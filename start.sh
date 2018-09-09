@@ -6,3 +6,5 @@ if [ $NODE_ENV = "production" ]; then
 else
   nodemon --exec babel-node -- src/index.js;
 fi
+
+exit
