@@ -41,7 +41,6 @@ router.all('*', (req, res) => {
 app.use(router);
 
 app.use((err, req, res, next) => {
-  console.log('the err -------------------------------------', err);
   res.status(500).send({
     message: 'Something went terribly wrong with the server and we are looking into it! Please wait a little and try again!',
     error: err

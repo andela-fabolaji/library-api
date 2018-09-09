@@ -3,6 +3,12 @@ import { user } from '../../database/models';
 import { sendMail, tokenService } from '../../services'
 
 export const Auth = {
+  /**
+   * creates a new user
+   * @param {object} req - request object
+   * @param {object} res - response object
+   * @param {function} next - next controller
+   */
   async signup(req, res, next) {
     try {
       const newUser = await user.create(req.body);
@@ -23,6 +29,12 @@ export const Auth = {
     }
   },
 
+  /**
+   * logs in user
+   * @param {object} req - request object
+   * @param {object} res - response object
+   * @param {function} next - next controller
+   */
   async signin(req, res, next) {
     try {
       const { email, password } = req.body;
