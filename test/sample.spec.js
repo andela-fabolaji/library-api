@@ -1,7 +1,5 @@
 import { expect } from 'chai';
-const addFn = (a, b) => {
-  return a + b;
-};
+import addFn from '../src/testFn';
 
 describe('Add Function', () => {
   it('should return an addition', () => {
