@@ -1,2 +1,2 @@
-export { sendMail } from './mailer';
-export { tokenService } from './tokenService';
+export { MailService } from './mailer';
+export { TokenService } from './token';

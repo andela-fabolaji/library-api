@@ -6,3 +6,5 @@ coverage/
 .env
 *.sql
 */**/*.sql
+keys/rsaprivate.key
+keys/rsapub.key
