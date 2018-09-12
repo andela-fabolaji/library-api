@@ -52,13 +52,13 @@ export const Auth = {
           return res.status(200).send({
             message: 'Account has already been activated',
           });
-        } else {
-          const verifiedUser = await user.update({ verified: true }, query);
-          if (verifiedUser) {
-            return res.status(200).send({
-              message: 'Account successfully verified',
-            });
-          }
+        }
+
+        const verifiedUser = await user.update({ verified: true }, query);
+        if (verifiedUser) {
+          return res.status(200).send({
+            message: 'Account successfully verified',
+          });
         }
       }
     } catch (err) {
@@ -86,7 +86,7 @@ export const Auth = {
 
         if (passwordMatch) {
           const { id, firstname, email } = loggedInUser;
-          const token = tokenService.sign({ id, firstname, email });
+          const token = TokenService.sign({ id, firstname, email });
 
           res.status(200).json({
             message: 'Log in successful',

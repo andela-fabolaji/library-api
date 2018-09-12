@@ -9,7 +9,8 @@ const options = { expiresIn: '24h' };
 export const TokenService = {
   /**
    * signs a new token
-   * @param {*} payload 
+   * @param {*} payload
+   * @returns {string} token
    */
   sign(payload) {
     return jwt.sign(payload, privateKey, options);
@@ -17,7 +18,8 @@ export const TokenService = {
 
   /**
    * verifies a token
-   * @param {*} token 
+   * @param {*} token
+   * @returns {boolean}
    */
   verify(token) {
     try {
@@ -36,4 +38,3 @@ export const TokenService = {
     return jwt.decode(token, { complete: true });
   }
 };
-
